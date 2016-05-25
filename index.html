@@ -55,8 +55,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 		      var dir=$("#Direccion").val();
           var rfc=$("#Rfc").val();
 		      var tel=$("#Telefono").val();
-          //var clasif=$("#selecClasif").val();
-          var clasif="1";
+          var clasif=$("#selecClasif").val();
 		      var lat=$("#obtLatitud").val();
 		      var lon=$("#obtLongitud").val();
 		      $.ajax({
@@ -78,7 +77,7 @@ function uploadPhoto(foto) {
 	//alert("si entro: "+foto);
 	var options = new FileUploadOptions();
 	options.fileKey="file";
-	options.fileName=$("#Rfc").val();
+	options.fileName=$("#Nombre").val();
 	options.mimeType="image/jpeg";
         //alert("si entro a upload: "+options.fileName);
 	var params = {};
@@ -213,14 +212,14 @@ text-align:center;
 	  <input type="text" id="Direccion" placeholder="Dirección" />
     <input type="text" id="Rfc" placeholder="RFC" />
 	  <input type="text" id="Telefono" placeholder="Teléfono" />
-    <input type="button" id="btnTomarFoto" value="Tomar Foto" >
-	  <div id="regFoto"></div>
-    <!--select id="selecClasif" >
+    <select id="selecClasif" >
       <option value="1">hospital</option>
       <option value="2">Plaza comercial</option>
       <option value="3">Restaurante</option>
       <option value="4">Zapaterias</option>
-    </select-->
+    </select>
+    <input type="button" id="btnTomarFoto" value="Tomar Foto" >
+	  <div id="regFoto"></div>
     <input type="button" id="obtenercord" value="Obtener coordenadas" />
     <input type="text" id="obtLatitud" placeholder="Longitud" />
 	  <input type="text" id="obtLongitud" placeholder="Longitud" />
