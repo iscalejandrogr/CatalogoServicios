@@ -11,7 +11,7 @@
 <script src="js/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script type="text/javascript">
-$(document).on("pageinit","#Principal", function(e, data){
+//$(document).on("pageinit","#Principal", function(e, data){
  var mapa;
  var miOptions;
  var defaultPos;
@@ -133,22 +133,22 @@ function obtenerMarcas(){
 
         function serviciosConsultados(datos){
 		        var respDatos=$.parseJSON(datos);
-		        var nombre, dir, tel, mail, lat, lng, ruta;
+		        var nombre, dir,rfc, tel, mail, lat, lng, ruta;
 		        for(var i in respDatos){
 		            nombre=respDatos[i].NombreServicio;//Cambiarlos de acuerdo a los campos de su base de datos
 		            dir=respDatos[i].Direccion;
-		            tel=respDatos[i].RFC;
-		            mail=respDatos[i].Telefono;
+		            rfc=respDatos[i].RFC;
+		            tel=respDatos[i].Telefono;
 		            lat=respDatos[i].Latitud;
 		            lng=respDatos[i].Longitud;
 		            ruta=respDatos[i].Foto;
-		            dibujarMarcas(nombre, dir, tel, mail, lat, lng, ruta);
+		            dibujarMarcas(nombre, dir, rfc, tel, lat, lng, ruta);
 	          }
 	      }
 }
 
-function dibujarMarcas(nombre, dir, tel, mail, lat, lng, ruta){//habilitar esta función
-  //alert("si llego: Lat:"+lat+" Long:"+lng+" ruta: "+ruta );
+function dibujarMarcas(nombre, dir, rfc, tel, lat, lng, ruta){//habilitar esta función
+  alert("si llego: Lat:"+lat+" Long:"+lng+" ruta: "+ruta );
   var latlng=new google.maps.LatLng(lat,lng);
   var marca2=new google.maps.Marker({
 	    position:latlng,
@@ -159,11 +159,11 @@ function dibujarMarcas(nombre, dir, tel, mail, lat, lng, ruta){//habilitar esta 
 
 	var infoVentanta2=new google.maps.InfoWindow({
 	  position:latlng,
-	  content:'<div style="width:200px; height:160px;"><div style="text-align: center; color:#5c041b; font-weight:bolder; font-size:12px; font-family:arial;">' + nombre + '</div><img src="http://itslmoviles.260mb.net/'+ruta+'" width="90" heigth="60" /><div style="text-align:center; color: #2e20b8; font-size:12px; font-family:arial; width:200px; text-align:center;">' + dir + '</div><div>Tel: ' + tel + '</div><div>Email:' + mail + '</div>'
+	  content:'<div style="width:200px; height:160px;"><div style="text-align: center; color:#5c041b; font-weight:bolder; font-size:12px; font-family:arial;">' + nombre + '</div><img src="http://itslmoviles.260mb.net/'+ruta+'" width="90" heigth="60" /><div style="text-align:center; color: #2e20b8; font-size:12px; font-family:arial; width:200px; text-align:center;">' + dir + '</div><div>Tel: ' + tel + '</div><div>RFC:' + rfc + '</div>'
 	});
 	google.maps.event.addListener(marca2, "click", function(){infoVentanta2.open(map,marca2);});
 }
-});
+//});
 </script>
 <style >
 #map-canvas{
@@ -218,11 +218,11 @@ text-align:center;
       <option value="3">Restaurante</option>
       <option value="4">Zapaterias</option>
     </select>
+	  <input type="button" id="btnTomarFoto" value="Tomar Foto" >
+	  <div id="regFoto"></div>
     <input type="button" id="obtenercord" value="Obtener coordenadas" />
     <input type="text" id="obtLatitud" placeholder="Longitud" />
 	  <input type="text" id="obtLongitud" placeholder="Longitud" />
-	  <input type="button" id="btnTomarFoto" value="Tomar Foto" >
-	  <div id="regFoto"></div>
 	  <input type="button" id="btnGuardar" value="Guardar Servicio" />
       </div>
     <div data-role="footer" data-position="fixed" style="text-align:center;">
