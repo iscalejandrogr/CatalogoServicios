@@ -60,7 +60,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 		      var lon=$("#obtLongitud").val();
 		      $.ajax({
 		          type:"POST",
-		          url:"http://iscmoviles.890m.com/guardar.php",
+		          url:"http://iscmoviles.890m.com/r/guardar.php",
 		          data:"nombre="+nom+"&dir="+dir+"&Rfc="+rfc+"&tel="+tel+"&classif="+clasif+"&lat="+lat+"&long="+lon,
 		          success: guardandoServicios
 		      });
