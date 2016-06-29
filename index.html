@@ -86,7 +86,7 @@ function uploadPhoto(foto) {
 	options.params = params;
 
 	var ft = new FileTransfer();
-	ft.upload(foto,"http://iscmoviles.890m.com/subirArchivo.php",function(r){
+	ft.upload(foto,"http://iscmoviles.890m.com/r/subirArchivo.php",function(r){
 		navigator.notification.confirm("El archivo: "+r.response,null, "Notificacion");
 	}, function(err){
 		navigator.notification.alert("Error: "+err.code+" detalle: "+err.response,null, "Error de Envío");
@@ -126,7 +126,7 @@ function obtenerUbicacion(){//Funcion que obtiene la Ubicación del dispositivo 
 function obtenerMarcas(){
 	      $.ajax({
 		        type:"POST",
-		        url:"http://iscmoviles.890m.com/consultar.php",
+		        url:"http://iscmoviles.890m.com/r/consultar.php",
 		        data:"",
 		        success: serviciosConsultados
 	      });
@@ -148,7 +148,7 @@ function obtenerMarcas(){
 }
 
 function dibujarMarcas(nombre, dir, rfc, tel, lat, lng, ruta){//habilitar esta función
-  //alert("si llego: Lat:"+lat+" Long:"+lng+" ruta: "+ruta );
+  alert("si llego: Lat:"+lat+" Long:"+lng+" ruta: "+ruta );
   var latlng=new google.maps.LatLng(lat,lng);
   var marca2=new google.maps.Marker({
 	    position:latlng,
@@ -243,7 +243,7 @@ text-align:center;
 	<div data-role="controlgroup" data-type="horizontal">
 	<a href="#Principal" class="ui-btn ui-icon-home ui-btn-icon-left">Regresar</a>
 	<a href="#" class="ui-btn ui-icon-search ui-btn-icon-left" id="btnConsServ">Consultar Todos</a>
-  <a href="#" class="ui-btn ui-icon-search ui-btn-icon-left" id="btnConsHotel">Consultar Hoteles</a>
+  <!--a href="#" class="ui-btn ui-icon-search ui-btn-icon-left" id="btnConsHotel">Consultar Hoteles</a-->
 	</div>
       </div>
 </div>

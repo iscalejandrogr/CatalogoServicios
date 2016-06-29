@@ -8,7 +8,7 @@ $tel=$_POST['tel'];
 $clasif=$_POST['classif'];
 $lat=$_POST['lat'];
 $longt=$_POST['long'];
-$foto="images/".$rfc.".jpg";
+$foto="r/images/".$rfc.".jpg";
 
 $sql="INSERT INTO servicios (IdServicios, NombreServicio, Direccion, RFC, Telefono, Latitud, Longitud, Foto,clasificacion_id) VALUES('','$nom','$dir','$rfc','$tel','$lat','$longt', '$foto','$clasif')";
 $res=mysqli_query($conexion,$sql);

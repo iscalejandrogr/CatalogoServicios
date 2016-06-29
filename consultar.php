@@ -1,5 +1,5 @@
 <?php
-include "conexion.php";
+include "r/conexion.php";
 
 $sql="SELECT NombreServicio, Direccion, RFC, Telefono, Latitud, Longitud, Foto FROM servicios";
 $resp=mysqli_query($conexion,$sql);
