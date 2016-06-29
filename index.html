@@ -131,7 +131,7 @@ function obtenerMarcas(){
 		        success: serviciosConsultados
 	      });
 
-        function serviciosConsultados(datos){alert(datos);
+        function serviciosConsultados(datos){
 		        var respDatos=$.parseJSON(datos);
 		        var nombre, dir,rfc, tel, mail, lat, lng, ruta;
 		        for(var i in respDatos){
@@ -148,7 +148,7 @@ function obtenerMarcas(){
 }
 
 function dibujarMarcas(nombre, dir, rfc, tel, lat, lng, ruta){//habilitar esta función
-  alert("si llego: Lat:"+lat+" Long:"+lng+" ruta: "+ruta );
+  //alert("si llego: Lat:"+lat+" Long:"+lng+" ruta: "+ruta );
   var latlng=new google.maps.LatLng(lat,lng);
   var marca2=new google.maps.Marker({
 	    position:latlng,
@@ -198,7 +198,7 @@ text-align:center;
       </div>
       <div data-role="footer" data-position="fixed" style="text-align:center;">
 	<div data-role="controlgroup" data-type="horizontal">
-	<a href="#" class="ui-btn ui-icon-home ui-btn-icon-left">Acerca de ..</a>
+	<a href="#Acercade" class="ui-btn ui-icon-home ui-btn-icon-left">Acerca de ..</a>
 	</div>
       </div>
 </div>
@@ -245,6 +245,51 @@ text-align:center;
 	<a href="#" class="ui-btn ui-icon-search ui-btn-icon-left" id="btnConsServ">Consultar Todos</a>
   <!--a href="#" class="ui-btn ui-icon-search ui-btn-icon-left" id="btnConsHotel">Consultar Hoteles</a-->
 	</div>
+      </div>
+</div>
+<div data-role="page" id="Actualizar" data-url="map-page">
+      <div data-role="header" data-position="fixed">
+	       <h1>Actualizar servicios</h1>
+      </div>
+      <div data-role="content" >
+	       <p>Módulo en contrucción...</p>
+      </div>
+      <div data-role="footer" data-position="fixed" style="text-align:center;">
+	       <div data-role="controlgroup" data-type="horizontal">
+	          <a href="#Principal" class="ui-btn ui-icon-home ui-btn-icon-left">Regresar</a>
+	      </div>
+      </div>
+</div>
+<div data-role="page" id="Eliminar" data-url="map-page">
+      <div data-role="header" data-position="fixed">
+	       <h1>Eliminar servicios</h1>
+      </div>
+      <div data-role="content" >
+	       <p>Módulo en contrucción...</p>
+      </div>
+      <div data-role="footer" data-position="fixed" style="text-align:center;">
+	       <div data-role="controlgroup" data-type="horizontal">
+	          <a href="#Principal" class="ui-btn ui-icon-home ui-btn-icon-left">Regresar</a>
+	      </div>
+      </div>
+</div>
+<div data-role="page" id="Acercade" data-url="map-page">
+      <div data-role="header" data-position="fixed">
+	       <h1>Datos de Interes</h1>
+      </div>
+      <div data-role="content" >
+	       <p>Desarrolldo por: </p>
+         <p>Ing. Alejandro Guzmán Rodríguez </p>
+         <p>Materia: </p>
+         <p>Base de Datos para Dispositivos Móviles </p>
+         <p>Semestre: </p>
+         <p>Octavo </p>
+         <p>Materia de especialidad</p>         
+      </div>
+      <div data-role="footer" data-position="fixed" style="text-align:center;">
+	       <div data-role="controlgroup" data-type="horizontal">
+	          <a href="#Principal" class="ui-btn ui-icon-home ui-btn-icon-left">Regresar</a>
+	      </div>
       </div>
 </div>
 </body>
