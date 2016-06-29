@@ -131,7 +131,7 @@ function obtenerMarcas(){
 		        success: serviciosConsultados
 	      });
 
-        function serviciosConsultados(datos){
+        function serviciosConsultados(datos){alert(datos);
 		        var respDatos=$.parseJSON(datos);
 		        var nombre, dir,rfc, tel, mail, lat, lng, ruta;
 		        for(var i in respDatos){
