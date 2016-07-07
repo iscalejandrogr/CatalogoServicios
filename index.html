@@ -92,7 +92,109 @@ function uploadPhoto(foto) {
 		navigator.notification.alert("Error: "+err.code+" detalle: "+err.response,null, "Error de Envío");
 	}, options);
 }
+/**********Actualizar*******/
+$("#btnConsultaAct").tap(function (){
 
+  $.ajax({
+    type:"POST",
+    url:"http://iscmoviles.890m.com/r/consultaTodo.php",
+    data:"",
+    success: function(datos){
+      var reg=$.parseJSON(datos);
+      var result=$("#todosRegAct");
+      result.html('<table border="1"id="tb4"><th>Id</th><th>Nombre</th><th>Dirección</th><th>RFC</th><th>Telefono</th><th>Latitud</th><th>Longitud</th><th>Foto</th><th>Clasificación</th>');
+      var fila=$("#tb4");
+      for(var i in reg){
+        fila.append('<tr><td>'+reg[i].IdServicios+'</td><td>'+reg[i].NombreServicio+'</td><td>'+reg[i].Direccion+'</td><td>'+reg[i].RFC+'</td><td>'+reg[i].Telefono+'</td><td>'+reg[i].Latitud+'</td><td>'+reg[i].Longitud+'</td><td>'+reg[i].Foto+'</td><td>'+reg[i].clasificacion_id+'</td></tr>');
+        }
+      fila.append('</table>');
+      }
+  });
+});
+
+$("#btnCargDatos").tap(function (){
+  var id=$("#idRegAct").val();
+  $.ajax({
+    type:"POST",
+    url:"http://iscmoviles.890m.com/r/consultaId.php",
+    data:"id="+id,
+    success: function(datos){
+      var resp=$.parseJSON(datos);
+      var controles=$("#datIDAct");
+      controles.html('ID:<input type="text" id="id1" disabled="true"/><br />Nombre:<input type="text" id="n1" /><br />Dirección:<input type="text" id="dir1" /><br />RFC:<input type="text" id="rfc1" /><br />Teléfono:<input type="text" id="tel1" /><br />Latitude:<input type="text" id="lat1" /><br />Longitude:<input type="text" id="lon1" /><br />Foto:<input type="text" id="fot1" /><br />Clasificación:<input type="text" id="cla1" />');
+      $("#id1").val(resp[0].IdServicios);
+      $("#n1").val(resp[0].NombreServicio);
+      $("#dir1").val(resp[0].Direccion);
+      $("#rfc1").val(resp[0].RFC);
+      $("#tel1").val(resp[0].Telefono);
+      $("#lat1").val(resp[0].Latitud);
+      $("#lon1").val(resp[0].Longitud);
+      $("#fot1").val(resp[0].Foto);
+      $("#cla1").val(resp[0].clasificacion_id);
+    }
+  });
+});
+
+$("#btnActId").tap(function (){
+  var id=$("#id1").val();
+  var nom=$("#n1").val();
+  var dir=$("#dir1").val();
+  var rfc=$("#rfc1").val();
+  var tel=$("#tel1").val();
+  var lat=$("#lat1").val();
+  var lon=$("#lon1").val();
+  var fot=$("#fot1").val();
+  var cla=$("#cla1").val();
+
+  if(nom=="" || dir=="" || rfc=="" ||tel==""|| lat==""){
+    alert("Favor de registrar valores en todos los campos");
+  }else{
+      $.ajax({
+        type:"POST",
+        url:"http://iscmoviles.890m.com/r/guardarAct.php",
+        data:"id="+id+"&nombre="+nom+"&dir="+dir+"&Rfc="+rfc+"&tel="+tel+"&classif="+cla+"&lat="+lat+"&long="+lon+"&fot="+fot,
+        success: exeGuardarAct
+      });
+
+      function exeGuardarAct(mensaje){
+        alert("Respuesta:"+mensaje);
+      }
+
+    }
+});
+/**********ELIMINAR*******/
+$("#btnConsultaE").tap(function (){
+
+  $.ajax({
+    type:"POST",
+    url:"http://iscmoviles.890m.com/r/consultaTodo.php",
+    data:"",
+    success: function(datos){
+      var reg=$.parseJSON(datos);
+      var result=$("#todosRegE");
+      result.html('<table border="1"id="tb6"><th>Id</th><th>Nombre</th><th>Dirección</th><th>RFC</th><th>Telefono</th><th>Latitud</th><th>Longitud</th><th>Foto</th><th>Clasificación</th>');
+      var fila=$("#tb6");
+      for(var i in reg){
+        fila.append('<tr><td>'+reg[i].IdServicios+'</td><td>'+reg[i].NombreServicio+'</td><td>'+reg[i].Direccion+'</td><td>'+reg[i].RFC+'</td><td>'+reg[i].Telefono+'</td><td>'+reg[i].Latitud+'</td><td>'+reg[i].Longitud+'</td><td>'+reg[i].Foto+'</td><td>'+reg[i].clasificacion_id+'</td></tr>');
+        }
+      fila.append('</table>');
+      }
+  });
+});
+
+
+		$("#btnElimId").tap(function (){
+			var id=$("#idRegEliminar").val();
+			$.ajax({
+				type:"POST",
+				url:"http://iscmoviles.890m.com/r/eliminar.php",
+				data:"id="+id,
+				success: function(datos){
+					alert("Respuesta:"+datos);
+				}
+			});
+		});
+/*************************/
 function obtenerUbicacion(){//Funcion que obtiene la Ubicación del dispositivo móvil
     if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition(exito, falla, opciones);
@@ -251,8 +353,13 @@ text-align:center;
       <div data-role="header" data-position="fixed">
 	       <h1>Actualizar servicios</h1>
       </div>
-      <div data-role="content" >
-	       <p>Módulo en contrucción...</p>
+      <div data-role="content">
+    	   <input type="button" id="btnConsultaAct" value="Mostrar todo"  />
+         <div id="todosRegAct"></div>
+         <input type="text" id="idRegAct"  />
+         <input type="button" id="btnCargDatos" value="Cargar dato" />
+         <div id="datIDAct"></div>
+         <input type="button" id="btnActId" value="Guardar cambios" />
       </div>
       <div data-role="footer" data-position="fixed" style="text-align:center;">
 	       <div data-role="controlgroup" data-type="horizontal">
@@ -265,7 +372,10 @@ text-align:center;
 	       <h1>Eliminar servicios</h1>
       </div>
       <div data-role="content" >
-	       <p>Módulo en contrucción...</p>
+          <input type="button" id="btnConsultaE" value="Mostrar todo"  />
+          <div id="todosRegE"></div>
+          <input type="text" id="idRegEliminar"  />
+          <input type="button" id="btnElimId" value="Eliminar registro" />
       </div>
       <div data-role="footer" data-position="fixed" style="text-align:center;">
 	       <div data-role="controlgroup" data-type="horizontal">
@@ -284,7 +394,7 @@ text-align:center;
          <p>Base de Datos para Dispositivos Móviles </p>
          <p>Semestre: </p>
          <p>Octavo </p>
-         <p>Materia de especialidad</p>         
+         <p>Materia de especialidad</p>
       </div>
       <div data-role="footer" data-position="fixed" style="text-align:center;">
 	       <div data-role="controlgroup" data-type="horizontal">
